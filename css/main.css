@@ -1,0 +1,947 @@
+@charset "utf-8";
+
+/* 폰트 */
+/* Pretendard Variable */
+/* font-family: "Pretendard Variable", sans-serif; */
+/* Prata */
+/* font-family: "Prata", serif; */
+
+/* 초기화 */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+
+html {
+  font-size: 10px;
+  /* 스크롤 부드럽게 */
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  background-color: #212121;
+  color: #fff;
+}
+/*img, iframe{vertical-align: top;}*/
+img,
+iframe {
+  display: block;
+}
+.center {
+  width: 1200px;
+  margin: 0px auto;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  transition: 300ms;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #69f;
+}
+
+/* header */
+header {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  border-bottom: 1px solid #ccc;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+.logo {
+  align-self: center;
+  /* 로고 너비 지정 */
+  width: 65px;
+}
+
+.logo > a > img {
+  width: 100%;
+}
+
+.gnb > a {
+  margin-left: 40px;
+}
+.section-title {
+  font-family: 'Prata', serif;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 80px;
+  text-align: center;
+}
+.section-sub-title {
+  font-family: 'Prata', serif;
+  font-size: 3rem;
+  margin: 80px 0 100px 0;
+  text-align: center;
+}
+
+/* main visual */
+#main-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+#main-visual > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#profile {
+  margin-top: 80px;
+}
+.about-inner {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.ab-text-wrap {
+  display: block;
+  justify-content: center;
+}
+.ab-text-wrap > h4 {
+  font-size: 3.6rem;
+  font-weight: 700;
+}
+.ab-text-wrap h5 {
+  font-size: 2rem;
+  font-weight: 500;
+  padding-top: 20px;
+}
+.ab-text-wrap > h5 {
+  margin: 60px 0px;
+}
+
+/* skill */
+#skill {
+  margin: 160px auto;
+}
+
+#skill > ul {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  color: #000000;
+}
+
+#skill h4 {
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #000000;
+}
+#skill h4 > strong {
+  display: block;
+  font-size: 2.6rem;
+  font-weight: 800;
+}
+
+/* work */
+.card-thumbnail > img {
+  width: 100%;
+}
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.card-detail > h5 {
+  font-size: 3rem;
+}
+.card-detail > ul {
+  margin: 20px 0;
+}
+.card-detail > ul > li {
+  line-height: 2.6rem;
+}
+.card-detail .long-btns {
+  display: flex;
+}
+.card-detail .long-btns > a {
+  color: #212121;
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  line-height: 38px;
+  border: 1px solid #516768;
+  padding: 0px 25px;
+  border-radius: 32px;
+  font-style: italic;
+}
+.card-detail .long-btns > a:first-child {
+  margin-right: 20px;
+}
+.card-detail .long-btns > a:hover,
+.card-detail .long-btns > a:focus {
+  background-color: #fff;
+  color: #333;
+}
+
+/* 카드형 슬라이더 */
+:root {
+  --card-width: 500px;
+  --blur-value: 4px; /* 블러 강도 조절 */
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+  overflow: hidden;
+  margin-bottom: 150px;
+}
+
+.slider-track {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: var(--card-width);
+  height: 100%;
+  transition: transform 0.5s ease;
+  cursor: grab;
+  user-select: none; /* 드래그 시 내부 텍스트나 번호가 선택되지 않게 방지 */
+}
+
+.slider-track:active {
+  cursor: grabbing; /* 클릭 중일 때 꽉 쥔 손모양 */
+}
+
+.card {
+  position: absolute;
+  min-width: var(--card-width);
+  color: #212121;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+
+  /* 기본 상태: 크기 줄이고 뒤로 보냄 */
+  transform: scale(0.8);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+/* 블러 효과 */
+.blur-effect {
+  filter: blur(var(--blur-value));
+}
+
+/* 가운데 강조된 카드 */
+.card.active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 10;
+  transform: translateX(0) scale(1);
+  filter: blur(0); /* 활성 카드는 블러 제거 */
+}
+
+/* 왼쪽 카드 */
+.card.prev-card {
+  opacity: 0.8;
+  z-index: 5;
+  transform: translateX(-300px) scale(0.8);
+  filter: blur(var(--blur-value));
+}
+
+/* 오른쪽 카드 */
+.card.next-card {
+  opacity: 0.8;
+  z-index: 5;
+  transform: translateX(300px) scale(0.8);
+  filter: blur(var(--blur-value));
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+.indicator-container {
+  display: flex;
+  gap: 15px; /* 점 사이 간격 */
+  padding: 10px 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #555; /* 비활성 상태 색상 */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 활성화된 점 스타일 */
+.dot.active {
+  background-color: #fff; /* 활성 상태 색상 */
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* img-slider */
+.img-slider-wrap {
+  width: 60%;
+  display: flex;
+  gap: 30px;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+.img-slider {
+  width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+}
+
+.img-slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.img-description {
+  width: 400px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.img-description > h6 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+.img-description > ul > li {
+  margin: 15px 0;
+}
+.img-description > ul > li > p {
+  font-size: 1.75rem;
+}
+
+/* page */
+.page {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page img {
+  width: 100%;
+  display: block;
+}
+
+.caption {
+  padding: 15px;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+/* 좌우 네비게이션 버튼 공통 스타일 */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+
+  /* 크기 고정 */
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px;
+
+  cursor: pointer;
+  z-index: 10;
+
+  display: flex;
+  align-items: center; /* 수직 중앙 */
+  justify-content: center; /* 수평 중앙 */
+
+  padding: 0;
+  margin: 0;
+  color: #333;
+  flex-shrink: 0; /* 버튼이 찌그러지는 것 방지 */
+}
+.slider-btn > img {
+  width: 40%;
+}
+/* 각 버튼의 가로 위치 */
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* 버튼이 숨겨질 때 사용할 클래스 */
+.hidden {
+  opacity: 0;
+  pointer-events: none; /* 클릭 안되게 설정 */
+}
+
+.img-indicator {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  z-index: 10;
+}
+
+.img-indicator .dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.img-indicator .dot.active {
+  background: #fff;
+}
+
+/* shorts-pc */
+.short {
+  margin-top: 80px;
+  width: 100%;
+  position: relative;
+  /* 버튼이 리스트 영역 밖으로 배치될 공간 확보 */
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.short > ul.short-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 50px;
+  overflow-x: auto;
+  cursor: grab;
+  list-style: none;
+
+  /* 스크롤 스냅 제거 (자연스러운 버튼 이동을 위해 필수) */
+  /* scroll-snap-type: x mandatory; */
+  /* -webkit-overflow-scrolling: touch; */
+
+  padding: 0 0 20px 0;
+  width: max-content;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.short > ul.short-list::-webkit-scrollbar {
+  display: none;
+}
+
+.short > ul.short-list > li {
+  width: 280px;
+  flex: 0 0 auto;
+  /* 스냅 정렬 제거 */
+  /* scroll-snap-align: center; */
+}
+
+.short > ul.short-list > li > a {
+  position: relative;
+  display: block;
+}
+
+.short > ul.short-list > li > a > div.short-title {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transition: 0.6s;
+}
+
+.short > ul.short-list > li > a:hover > div.short-title {
+  opacity: 1;
+}
+
+.short > ul.short-list > li > a > div.short-title > span {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 2rem;
+}
+
+.short > ul.short-list > li > a > div.short-title > img {
+  width: 60px;
+}
+
+.short-thumnail {
+  width: 100%;
+  display: block;
+}
+
+/* 좌우 이동 버튼 스타일 */
+.short-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #333;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  border: none;
+}
+
+.short-btn:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.short .prev-btn {
+  left: 0;
+}
+.short .next-btn {
+  right: 0;
+}
+
+/* 드래그 방지 및 이벤트 제어 */
+/* 1. 슬라이더 전체의 텍스트 선택 방지 */
+.short-list {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* 2. 링크(a)는 클릭되어야 하므로 pointer-events: auto 유지 */
+.short-list a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* 3. 내부 이미지와 제목 등은 이벤트를 통과시켜 부모(short-list)로 전달 */
+.short-list a img,
+.short-list a .short-title,
+.short-list a span {
+  pointer-events: none; /* 핵심: 마우스 이벤트가 아래로 관통됨 */
+  -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
+}
+
+.short-list a:hover .short-title {
+  pointer-events: auto;
+}
+
+/* contact-pc */
+#contact {
+  margin: 160px 0px;
+}
+#contact .contact-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 0;
+}
+
+#contact .contact-list > li > a {
+  display: flex;
+  gap: 10px;
+}
+
+/* footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  background-color: #000;
+}
+
+/* 특정 스크롤 값에서 맨위로가기 버튼이 보였다 안보였다 설정 디자인 */
+.btn-top {
+  position: fixed;
+  width: 40px;
+  right: 60px;
+  bottom: 120px;
+  opacity: 0;
+  transition: 0.5s;
+}
+.btn-top img {
+  width: 100%;
+}
+.btn-top.show {
+  opacity: 1;
+}
+
+/* tablet */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  body {
+    font-size: 1.4rem;
+  }
+  .center {
+    width: initial;
+    padding: 0px 32px;
+  }
+  header {
+    padding: 10px 0px;
+  }
+  .section-title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  .section-sub-title {
+    font-family: 'Prata', serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  #about {
+    margin-top: calc((100vw * 9 / 16) + 80px);
+  }
+  .ab-img-wrap {
+    width: 40%;
+  }
+  .ab-img-wrap > img {
+    width: 100%;
+  }
+  .ab-text-wrap {
+    padding-left: 6rem;
+  }
+  .ab-text-wrap > h4 {
+    font-size: 2.8rem;
+  }
+  .ab-text-wrap > h5 {
+    font-size: 1.6rem;
+  }
+  #skill {
+    margin: 100px 0px;
+  }
+  #skill h4 > strong {
+    font-size: 2.2rem;
+  }
+  :root {
+    --card-width: 420px;
+  }
+  .long-list > li {
+    display: block;
+    margin-bottom: 60px;
+  }
+  .long-thumbnail > img {
+    width: 100%;
+  }
+  .card-detail {
+    padding: 20px 0px;
+  }
+  .card-detail > ul {
+    margin: 20px 0px;
+  }
+  /* img-slider */
+  .img-slider-wrap {
+    width: 680px;
+  }
+  .img-description > ul > li {
+    margin: 10px 0;
+  }
+  .img-description > ul > li > p {
+    font-size: 1.65rem;
+  }
+  /* shorts-tablet */
+  /* 1. 기본 레이아웃 조정 */
+  .short {
+    margin-top: 40px;
+    padding: 0; /* 버튼 제거 후 패딩 제거 */
+  }
+
+  .short > ul.short-list {
+    gap: 30px;
+    padding: 0 20px 20px 20px; /* 양옆 여백 추가 */
+  }
+
+  .short > ul.short-list > li {
+    width: 220px; /* 타블렛용 카드 너비 */
+  }
+
+  /* 쇼츠 버튼 숨김 */
+  .short-btn {
+    display: none;
+  }
+
+  /* 타이틀 항상 표시 및 하단 10% 배치 */
+  .short > ul.short-list > li > a > div.short-title {
+    opacity: 1;
+    top: auto;
+    bottom: 0;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .short > ul.short-list > li > a > div.short-title > span {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+    white-space: nowrap; /* 글자가 넘치지 않게 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .short > ul.short-list > li > a > div.short-title > img {
+    display: none; /* 아이콘 숨김 */
+  }
+  /* contact-tablet */
+  #contact {
+    margin: 100px 0px;
+  }
+  footer {
+    padding-bottom: 40px;
+  }
+} /* tablet End */
+
+/* mobile */
+@media screen and (max-width: 767px) {
+  :root {
+    --card-width: 310px;
+  }
+
+  body {
+    font-size: 1.4rem;
+  }
+  .center {
+    width: initial;
+    padding: 8px 18px;
+  }
+  .gnb > a {
+    font-size: 1.4rem;
+    margin-left: 10px;
+  }
+  #main-visual > video {
+    top: 46px; /* 본인의 헤더 높이만큼 설정 */
+  }
+  .section-title {
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .section-sub-title {
+    font-family: 'Prata', serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  #about {
+    margin-top: calc((100vw * 9 / 16) + 60px);
+    text-align: center;
+  }
+  .about-inner {
+    display: block;
+    width: 80%;
+  }
+  .ab-img-wrap {
+    width: 70%;
+    margin: 0px auto;
+  }
+  .ab-img-wrap > img {
+    width: 100%;
+  }
+  .ab-text-wrap {
+    width: 80%;
+    padding-left: 0;
+    margin: 28px auto 0 auto;
+  }
+  .ab-text-wrap > h4 {
+    font-size: 2.2rem;
+  }
+  .ab-text-wrap > h5 {
+    font-size: 1.6rem;
+    margin: 24px 0px;
+  }
+  .ab-text-wrap h5 {
+    font-size: 1.6rem;
+  }
+  #skill {
+    margin: 100px 0px;
+  }
+  #skill h4 {
+    margin-bottom: 16px;
+  }
+  #skill h4 > strong {
+    font-size: 2.2rem;
+  }
+  #skill > ul {
+    flex-wrap: wrap;
+  }
+  #skill > ul > li {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+  #skill > ul > li:last-child {
+    margin-bottom: 0px;
+  }
+
+  /* slider-mobile */
+  .slider-container {
+    height: 550px;
+  }
+  .card-thumbnail > img {
+    width: 100%;
+  }
+  .card-detail {
+    padding: 20px;
+  }
+  .card-detail > h5 {
+    font-size: 2.6rem;
+  }
+  .card-detail > ul {
+    margin: 20px 0px;
+  }
+  .card-detail .long-btns > a {
+    font-size: 1.4rem;
+  }
+  /* 왼쪽 카드 */
+  .card.prev-card {
+    transform: translateX(-200px) scale(0.8);
+  }
+
+  /* 오른쪽 카드 */
+  .card.next-card {
+    transform: translateX(200px) scale(0.8);
+  }
+
+  /* img slider-mobile */
+  .img-slider-wrap {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .img-slider {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+  }
+  .slider-btn {
+    display: none;
+  }
+  .img-description {
+    width: 300px;
+    text-align: left;
+  }
+  .img-description ul li {
+    margin: 10px 0;
+  }
+  .img-description ul li p {
+    font-size: 1.6rem;
+  }
+
+  /* shorts-mobile */
+  .short {
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .short-btn {
+    display: none;
+  }
+
+  .short > ul.short-list {
+    gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    justify-content: flex-start;
+  }
+
+  .short > ul.short-list > li {
+    width: 160px;
+  }
+
+  /* 타이틀 항상 표시 및 하단 20% 배치 */
+  .short > ul.short-list > li > a > div.short-title {
+    opacity: 1;
+    top: auto;
+    bottom: 0;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+  }
+
+  /* 텍스트 스타일 및 아이콘 조정 */
+  .short > ul.short-list > li > a > div.short-title > span {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+  }
+
+  .short > ul.short-list > li > a > div.short-title > img {
+    display: none;
+  }
+
+  /* contact-mobile */
+  #contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px 0px;
+  }
+  #contact .contact-list {
+    display: block;
+    padding: 20px 0;
+  }
+  #contact .contact-list li {
+    padding: 5px 0;
+  }
+  footer {
+    padding: 16px;
+  }
+  .btn-top {
+    right: 20px;
+    bottom: 60px;
+  }
+} /* mobile End */
