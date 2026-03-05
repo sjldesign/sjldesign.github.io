@@ -137,13 +137,13 @@ header {
 /* skill */
 #skill {
   margin: 160px auto;
+  color: #000000;
 }
 
 #skill > ul {
   display: flex;
   justify-content: space-around;
   text-align: center;
-  color: #000000;
 }
 
 #skill h4 {
