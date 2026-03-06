@@ -141,7 +141,6 @@ header {
 .skill-box {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 20px auto;
   width: 170px;
   background-color: white;
@@ -197,7 +196,7 @@ header {
 
 /* 카드형 슬라이더 */
 :root {
-  --card-width: 500px;
+  --card-width: 1000px;
   --blur-value: 4px; /* 블러 강도 조절 */
 }
 
