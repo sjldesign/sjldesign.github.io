@@ -89,7 +89,7 @@ header {
 .section-sub-title {
   font-family: 'Prata', serif;
   font-size: 3rem;
-  margin: 80px 0 100px 0;
+  margin: 100px 0 30px 0;
   text-align: center;
 }
 
@@ -174,7 +174,7 @@ header {
   -moz-user-select: none;
   -ms-user-select: none;
 }
-.card > .card-thumbnail > li > a > div.card-title {
+.card-detail {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -190,18 +190,17 @@ header {
   color: #fff;
   transition: 0.6s;
 }
-
-.card > .card-thumbnail > li > a:hover > div.card-title {
+.card-detail {
   opacity: 1;
 }
 
-.card > .card-thumbnail > li > a > div.card-title > span {
+.card-detail > span {
   display: block;
   margin-bottom: 24px;
   font-size: 2rem;
 }
 
-.card > .card-thumbnail > li > a > div.card-title > img {
+.card-detail > img {
   width: 60px;
 }
 
@@ -209,6 +208,9 @@ header {
   width: 100%;
   display: block;
 }
+
+/* 드래그 방지 및 이벤트 제어 */
+/* 1. 슬라이더 전체의 텍스트 선택 방지 */
 .card-list {
   user-select: none;
   -webkit-user-select: none;
@@ -217,7 +219,7 @@ header {
 }
 
 /* 2. 링크(a)는 클릭되어야 하므로 pointer-events: auto 유지 */
-.card a {
+.card-list a {
   pointer-events: auto;
   cursor: pointer;
 }
@@ -225,15 +227,14 @@ header {
 /* 3. 내부 이미지와 제목 등은 이벤트를 통과시켜 부모(short-list)로 전달 */
 .card-list a img,
 .card-list a .card-detail,
-.card-list a span {
+.card-detail a span {
   pointer-events: none; /* 핵심: 마우스 이벤트가 아래로 관통됨 */
   -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
 }
 
-.card-thumbnail a:hover .short-title {
+.card-detail a:hover .short-title {
   pointer-events: auto;
 }
-
 /* 카드형 슬라이더 */
 :root {
   --card-width: 1000px;
