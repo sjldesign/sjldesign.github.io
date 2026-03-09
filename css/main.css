@@ -174,6 +174,10 @@ header {
   -moz-user-select: none;
   -ms-user-select: none;
 }
+.card-detail > h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
 .card-detail {
   opacity: 0;
   position: absolute;
@@ -185,7 +189,6 @@ header {
   align-items: center;
   width: 100%;
   height: 100%;
-  text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   transition: 0.6s;
@@ -211,7 +214,7 @@ header {
 
 /* 드래그 방지 및 이벤트 제어 */
 /* 1. 슬라이더 전체의 텍스트 선택 방지 */
-.card-list {
+.card-detail {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -219,20 +222,20 @@ header {
 }
 
 /* 2. 링크(a)는 클릭되어야 하므로 pointer-events: auto 유지 */
-.card-list a {
+.card-detail a {
   pointer-events: auto;
   cursor: pointer;
 }
 
 /* 3. 내부 이미지와 제목 등은 이벤트를 통과시켜 부모(short-list)로 전달 */
-.card-list a img,
-.card-list a .card-detail,
+.card-detail a img,
+.card-detail a .card-detail,
 .card-detail a span {
   pointer-events: none; /* 핵심: 마우스 이벤트가 아래로 관통됨 */
   -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
 }
 
-.card-detail a:hover .short-title {
+.card-detail a:hover .card-detail {
   pointer-events: auto;
 }
 /* 카드형 슬라이더 */
