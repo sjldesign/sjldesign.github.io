@@ -174,10 +174,7 @@ header {
   -moz-user-select: none;
   -ms-user-select: none;
 }
-.card-detail > h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
+
 .card-detail {
   opacity: 0;
   position: absolute;
@@ -196,7 +193,14 @@ header {
 .card-detail {
   opacity: 1;
 }
-
+.card-detail {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 50px;
+  overflow-x: auto;
+  cursor: grab;
+  list-style: none;
+}
 .card-detail > span {
   display: block;
   margin-bottom: 24px;
