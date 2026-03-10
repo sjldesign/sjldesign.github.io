@@ -215,6 +215,23 @@ header {
   width: 100%;
   display: block;
 }
+.card-detail:hover {
+  opacity: 1;
+}
+
+.card-detail .long-btns {
+  font-size: 1.4rem;
+}
+.card-detail .long-btns a {
+  font-size: 1.4rem;
+  margin-right: 15px;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.card-detail .long-btns a:last-child {
+  margin-right: 0;
+}
 
 /* 드래그 방지 및 이벤트 제어 */
 /* 1. 슬라이더 전체의 텍스트 선택 방지 */
@@ -679,6 +696,8 @@ footer {
   }
   .card-detail {
     padding: 20px 0px;
+    position: static;
+    opacity: 1;
   }
   .card-detail > ul {
     margin: 20px 0px;
@@ -828,13 +847,15 @@ footer {
 
   /* slider-mobile */
   .slider-container {
-    height: 550px;
+    height: 600px;
   }
   .card-thumbnail > img {
     width: 100%;
   }
   .card-detail {
     padding: 20px;
+    position: static;
+    opacity: 1;
   }
   .card-detail > h5 {
     font-size: 2.6rem;
