@@ -239,7 +239,7 @@ header {
   -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
 }
 
-.card-thumbnail a:hover .card-detail {
+.card-detail a:hover .card-detail {
   pointer-events: auto;
 }
 /* 카드형 슬라이더 */
