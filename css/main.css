@@ -89,7 +89,7 @@ header {
 .section-sub-title {
   font-family: 'Prata', serif;
   font-size: 3rem;
-  margin: 100px 0 30px 0;
+  margin: 100px 0 50px 0;
   text-align: center;
 }
 
@@ -167,7 +167,7 @@ header {
 
 /* work */
 .card-thumbnail > img {
-  margin-top: 100;
+  margin-top: 0;
   width: 100%;
   user-select: none;
   -webkit-user-select: none;
@@ -190,7 +190,7 @@ header {
   color: #fff;
   transition: 0.6s;
 }
-.card-detail {
+.card-thumbnail {
   opacity: 1;
 }
 .card-detail {
@@ -226,20 +226,20 @@ header {
 }
 
 /* 2. 링크(a)는 클릭되어야 하므로 pointer-events: auto 유지 */
-.card-detail a {
+.card-thumbnail a {
   pointer-events: auto;
   cursor: pointer;
 }
 
 /* 3. 내부 이미지와 제목 등은 이벤트를 통과시켜 부모(short-list)로 전달 */
-.card-detail a img,
-.card-detail a .card-detail,
-.card-detail a span {
+.card-thumbnail a img,
+.card-thumbnail a .card-detail,
+.card-thumbnail a span {
   pointer-events: none; /* 핵심: 마우스 이벤트가 아래로 관통됨 */
   -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
 }
 
-.card-detail a:hover .card-detail {
+.card-thumbnail a:hover .card-detail {
   pointer-events: auto;
 }
 /* 카드형 슬라이더 */
@@ -366,8 +366,8 @@ button {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  border: 1px solid #dbdbdb;
+  background: #000;
+  border: 1px solid #000;
   border-radius: 8px;
 }
 
@@ -481,7 +481,7 @@ button {
 
 /* shorts-pc */
 .short {
-  margin-top: 80px;
+  margin-top: 40px;
   width: 100%;
   position: relative;
   /* 버튼이 리스트 영역 밖으로 배치될 공간 확보 */
