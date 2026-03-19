@@ -510,8 +510,9 @@ button {
 .short > ul.short-list {
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 50px;
-
+  cursor: grab;
   list-style: none;
 
   /* 스크롤 스냅 제거 (자연스러운 버튼 이동을 위해 필수) */
@@ -569,6 +570,9 @@ button {
 
 .short-thumnail {
   width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background-color: #000;
   display: block;
 }
 
@@ -581,6 +585,10 @@ button {
   -ms-user-select: none;
 }
 
+.short-list::-webkit-scrollbar {
+  display: none;
+}
+
 /* 2. 링크(a)는 클릭되어야 하므로 pointer-events: auto 유지 */
 .short-list a {
   pointer-events: auto;
@@ -591,7 +599,7 @@ button {
 .short-list a img,
 .short-list a .short-title,
 .short-list a span {
-  pointer-events: none; /* 핵심: 마우스 이벤트가 아래로 관통됨 */
+  /* pointer-events: none; */
   -webkit-user-drag: none; /* 브라우저 이미지 드래그 방지 */
 }
 
@@ -838,7 +846,7 @@ footer {
   }
   .skill-box {
     width: 125px;
-    margin: 20px;
+    margin: 15px;
   }
   #skill h4 {
     margin-bottom: 16px;
