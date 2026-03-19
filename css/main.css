@@ -504,6 +504,7 @@ button {
   /* 버튼이 리스트 영역 밖으로 배치될 공간 확보 */
   padding: 0 80px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .short > ul.short-list {
