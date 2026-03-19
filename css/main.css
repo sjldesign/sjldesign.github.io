@@ -798,7 +798,7 @@ footer {
     top: 46px; /* 본인의 헤더 높이만큼 설정 */
   }
   .section-title {
-    font-size: 2.6rem;
+    font-size: 2.3rem;
     font-weight: 600;
     margin-bottom: 20px;
   }
@@ -828,14 +828,14 @@ footer {
     margin: 28px auto 0 auto;
   }
   .ab-text-wrap > h4 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
   .ab-text-wrap > h5 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 24px 0px;
   }
   .ab-text-wrap h5 {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   #skill {
     margin: 100px 0px;
