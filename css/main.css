@@ -369,6 +369,42 @@ button {
   padding: 10px 2px;
   cursor: pointer;
 }
+/* 라이트 박스 스타일 */
+/* 워크 라이트박스 전체 배경 */
+#work .work-light-box {
+  display: none; /* 기본적으로 숨김 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* 검은색 80% 반투명 */
+  z-index: 9999; /* 다른 요소보다 위에 표시 */
+  cursor: pointer; /* 바깥쪽 클릭 가능함을 암시 */
+}
+
+/* 중앙 정렬을 위한 내부 wrap */
+#work .iframe_wrap {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: default; /* 영상 근처에서는 기본 커서 */
+}
+
+#work .iframe_box video {
+  width: 100%;
+}
+
+#work1 {
+  width: 100%; /* 원하는 너비 (예: 화면의 80%) */
+  max-width: 1120px; /* 너무 커지는 걸 방지 (2배 크기 제한) */
+  aspect-ratio: 16 / 9; /* 16:9 비율 고정 */
+  height: auto; /* 높이는 비율에 맞춰 자동 계산 */
+  margin: 0 auto;
+}
 
 /* img-slider */
 .img-slider-wrap {

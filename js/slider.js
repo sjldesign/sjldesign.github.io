@@ -60,7 +60,7 @@ window.onload = function () {
   let isDragging = false;
   let startX = 0;
   let currentTranslate = 0;
-  const dragThreshold = 60;
+  const dragThreshold = 100;
 
   function onDragStart(e) {
     stopAutoSlide();
