@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 쇼츠 라이트박스 열기
-  $('.btn-short-view').click(function (e) {
+  $('.btn-short-view .short-title img').click(function (e) {
     e.preventDefault(); // 기본 링크 이동 방지
 
     // 클릭한 쇼츠가 몇 번째인지 확인
@@ -189,7 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 쇼츠 라이트박스 닫기
   $('.short-light-box').click(function (e) {
-    if ($(e.target).is('.short-light-box') || $(e.target).is('.iframe_wrap')) {
+    // 기존 조건에 닫기 버튼($(e.target).closest('.btn-close-lightbox').length > 0)을 눌렀을 때의 조건을 추가했습니다.
+    if ($(e.target).is('.short-light-box') || $(e.target).is('.iframe_wrap') || $(e.target).closest('.btn-close-lightbox').length > 0) {
       var $this = $(this);
       var $iframe = $this.find('iframe');
       var currentSrc = $iframe.attr('src');
