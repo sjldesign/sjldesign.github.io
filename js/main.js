@@ -144,22 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
     $targetBox.fadeIn(500);
   }
 
-  // [데스크탑 전용] 카드 디테일 영역 클릭 시 라이트박스 열기
-  $('.card-detail').click(function () {
-    // 모바일(767px 이하) 환경에서는 .card-detail 클릭 이벤트를 무시합니다.
-    if (window.innerWidth <= 767) {
-      return;
-    }
-    openLightbox($(this));
-  });
-
-  // [모바일 전용] View Video 버튼 클릭 시 라이트박스 열기
+  // [데스크탑/모바일 공통] View Video 버튼 클릭 시 라이트박스 열기
   $('.btn-view').click(function (e) {
-    if (window.innerWidth <= 767) {
-      e.preventDefault(); // 기본 링크 동작(새 창 열기) 방지
-      openLightbox($(this)); // 라이트박스 열기 실행
-    }
-    // 데스크탑 환경일 때는 if문을 타지 않으므로 target="_blank"가 정상 작동하여 새 창이 열립니다.
+    e.preventDefault(); // 기본 링크 동작(새 창 열기) 방지
+    openLightbox($(this)); // 라이트박스 열기 실행
   });
 
   // 라이트박스 닫기
