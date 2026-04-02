@@ -165,4 +165,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // 쇼츠 라이트박스 열기
+  $('.btn-short-view').click(function (e) {
+    e.preventDefault(); // 기본 링크 이동 방지
+
+    // 클릭한 쇼츠가 몇 번째인지 확인
+    var idx = $(this).closest('li').index();
+
+    // 해당 순서와 일치하는 라이트박스 선택
+    var $targetBox = $('.short-light-box').eq(idx);
+    var $iframe = $targetBox.find('iframe');
+
+    // 클릭 시 자동 재생되도록 src 뒤에 파라미터 추가 (선택 사항)
+    var videoSrc = $iframe.attr('src');
+    if (videoSrc.indexOf('autoplay') === -1) {
+      // 기존 주소에 자동 재생 옵션이 없다면 붙여줌
+      $iframe.attr('src', videoSrc + '?autoplay=1');
+    }
+
+    $targetBox.fadeIn(500);
+  });
+
+  // 쇼츠 라이트박스 닫기
+  $('.short-light-box').click(function (e) {
+    if ($(e.target).is('.short-light-box') || $(e.target).is('.iframe_wrap')) {
+      var $this = $(this);
+      var $iframe = $this.find('iframe');
+      var currentSrc = $iframe.attr('src');
+
+      $this.fadeOut(500, function () {
+        // 재생 중지(소리 끄기)를 위해 src를 비우고, autoplay 파라미터를 제거하여 원상복구
+        var stopSrc = currentSrc.replace('?autoplay=1', '');
+        $iframe.attr('src', '');
+        $iframe.attr('src', stopSrc);
+      });
+    }
+  });
 });

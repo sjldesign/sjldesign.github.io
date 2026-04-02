@@ -406,6 +406,56 @@ button {
   margin: 0 auto;
 }
 
+/* --- 쇼츠 라이트박스 (세로형 비디오 전용) --- */
+
+/* 1. 라이트박스 전체 배경 (화면 덮기) */
+.short-light-box {
+  display: none; /* 자바스크립트 fadeIn/fadeOut 작동을 위해 기본 숨김 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 어두운 반투명 배경 */
+  z-index: 9999; /* 화면 최상단 노출 */
+  backdrop-filter: blur(5px); /* 배경 블러 처리 (선택 사항) */
+}
+
+/* 2. 화면 중앙 정렬 및 최대 너비 설정 */
+.short-light-box .iframe_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* 내부 요소를 항상 가운데로 모아줌 */
+  justify-content: center; /* 가로 정중앙 */
+  align-items: center; /* 세로 정중앙 */
+}
+
+/* 3. 쇼츠 비율(9:16) 유지 영역 */
+.short-light-box .iframe_box {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh; /* 스마트폰 등에서 기기 세로 높이보다 영상이 길어져서 잘리는 현상 방지 */
+  aspect-ratio: 9 / 16;
+  background-color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. iframe 내부 꽉 채우기 */
+.short-light-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* img-slider */
 .img-slider-wrap {
   width: 60%;
