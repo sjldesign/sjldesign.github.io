@@ -125,10 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 라이트박스 열기
-  $('.card-detail').click(function () {
-    // 클릭한 요소의 가장 가까운 부모인 .work-box가 전체 .work-box 중 몇 번째인지 계산
-    var idx = $(this).closest('.work-item').index();
+  // --- 5. 라이트박스 로직 변경 ---
+
+  // 라이트박스를 여는 공통 함수
+  function openLightbox($element) {
+    // 클릭한 요소의 가장 가까운 부모인 .work-item이 전체 중 몇 번째인지 계산
+    var idx = $element.closest('.work-item').index();
 
     // 해당 순서와 일치하는 라이트박스 선택
     var $targetBox = $('.work-light-box').eq(idx);
@@ -140,6 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // src를 다시 입력하면 영상이 처음부터 자동 재생됨
     $iframe.attr('src', videoSrc);
     $targetBox.fadeIn(500);
+  }
+
+  // [데스크탑 전용] 카드 디테일 영역 클릭 시 라이트박스 열기
+  $('.card-detail').click(function () {
+    // 모바일(767px 이하) 환경에서는 .card-detail 클릭 이벤트를 무시합니다.
+    if (window.innerWidth <= 767) {
+      return;
+    }
+    openLightbox($(this));
+  });
+
+  // [모바일 전용] View Video 버튼 클릭 시 라이트박스 열기
+  $('.btn-view').click(function (e) {
+    if (window.innerWidth <= 767) {
+      e.preventDefault(); // 기본 링크 동작(새 창 열기) 방지
+      openLightbox($(this)); // 라이트박스 열기 실행
+    }
+    // 데스크탑 환경일 때는 if문을 타지 않으므로 target="_blank"가 정상 작동하여 새 창이 열립니다.
   });
 
   // 라이트박스 닫기
