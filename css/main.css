@@ -406,6 +406,56 @@ button {
   margin: 0 auto;
 }
 
+/* --- 쇼츠 라이트박스 (세로형 비디오 전용) --- */
+
+/* 1. 라이트박스 전체 배경 (화면 덮기) */
+.short-light-box {
+  display: none; /* 자바스크립트 fadeIn/fadeOut 작동을 위해 기본 숨김 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 어두운 반투명 배경 */
+  z-index: 9999; /* 화면 최상단 노출 */
+  backdrop-filter: blur(5px); /* 배경 블러 처리 (선택 사항) */
+}
+
+/* 2. 화면 중앙 정렬 및 최대 너비 설정 */
+.short-light-box .iframe_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* 내부 요소를 항상 가운데로 모아줌 */
+  justify-content: center; /* 가로 정중앙 */
+  align-items: center; /* 세로 정중앙 */
+}
+
+/* 3. 쇼츠 비율(9:16) 유지 영역 */
+.short-light-box .iframe_box {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh; /* 스마트폰 등에서 기기 세로 높이보다 영상이 길어져서 잘리는 현상 방지 */
+  aspect-ratio: 9 / 16;
+  background-color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. iframe 내부 꽉 채우기 */
+.short-light-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* img-slider */
 .img-slider-wrap {
   width: 60%;
@@ -523,13 +573,13 @@ button {
 .img-indicator .dot {
   width: 6px;
   height: 6px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .img-indicator .dot.active {
-  background: #fff;
+  background: #333;
 }
 
 /* shorts-pc */
@@ -641,6 +691,51 @@ button {
 
 .short-list a:hover .short-title {
   pointer-events: auto;
+}
+
+/* --- 라이트박스 닫기 버튼 --- */
+.btn-close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  border: 2px solid #fff; /* 요청하신 흰색 border */
+  border-radius: 50%; /* 완전한 원형 */
+  cursor: pointer;
+  z-index: 10000;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* X 모양의 두 선 만들기 */
+.btn-close-lightbox::before,
+.btn-close-lightbox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px; /* X자의 크기 */
+  height: 2px; /* X자의 두께 */
+  background-color: #fff;
+}
+
+/* 45도 회전하여 / 모양 */
+.btn-close-lightbox::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* -45도 회전하여 \ 모양 */
+.btn-close-lightbox::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* 마우스 올렸을 때 살짝 도는 효과 (선택 사항) */
+.btn-close-lightbox:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* contact-pc */
@@ -931,6 +1026,16 @@ footer {
   .card.next-card {
     transform: translateX(200px) scale(0.8);
   }
+  /* 라이트 박스 스타일 */
+  #work .iframe_wrap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default; /* 영상 근처에서는 기본 커서 */
+  }
 
   /* img slider-mobile */
   .img-slider-wrap {
@@ -984,28 +1089,58 @@ footer {
     width: 160px;
   }
 
-  /* 타이틀 항상 표시 및 하단 20% 배치 */
+  /* 모바일 오버레이 전체 덮기 (높이 100%) */
   .short > ul.short-list > li > a > div.short-title {
     opacity: 1;
-    top: auto;
+    top: 0;
+    left: 0;
     bottom: 0;
-    height: 10%;
-    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    /* 영상이 비치도록 살짝만 어둡게 설정 */
+    background-color: rgba(0, 0, 0, 0.2);
     justify-content: center;
   }
 
-  /* 텍스트 스타일 및 아이콘 조정 */
+  /* 텍스트(span)를 맨 아래 10% 영역에 띠 모양으로 배치 */
   .short > ul.short-list > li > a > div.short-title > span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
     font-size: 1.2rem;
     margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 5px;
+    box-sizing: border-box;
   }
 
+  /* 재생 아이콘 정중앙 배치 */
   .short > ul.short-list > li > a > div.short-title > img {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    margin-bottom: 0;
+  }
+
+  .btn-close-lightbox {
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+  }
+  .btn-close-lightbox::before,
+  .btn-close-lightbox::after {
+    width: 16px;
   }
 
   /* contact-mobile */

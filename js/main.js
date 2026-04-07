@@ -125,10 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 라이트박스 열기
-  $('.card-detail').click(function () {
-    // 클릭한 요소의 가장 가까운 부모인 .work-box가 전체 .work-box 중 몇 번째인지 계산
-    var idx = $(this).closest('.work-item').index();
+  // --- 5. 라이트박스 로직 변경 ---
+
+  // 라이트박스를 여는 공통 함수
+  function openLightbox($element) {
+    // 클릭한 요소의 가장 가까운 부모인 .work-item이 전체 중 몇 번째인지 계산
+    var idx = $element.closest('.work-item').index();
 
     // 해당 순서와 일치하는 라이트박스 선택
     var $targetBox = $('.work-light-box').eq(idx);
@@ -140,6 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // src를 다시 입력하면 영상이 처음부터 자동 재생됨
     $iframe.attr('src', videoSrc);
     $targetBox.fadeIn(500);
+  }
+
+  // [데스크탑/모바일 공통] View Video 버튼 클릭 시 라이트박스 열기
+  $('.btn-view').click(function (e) {
+    e.preventDefault(); // 기본 링크 동작(새 창 열기) 방지
+    openLightbox($(this)); // 라이트박스 열기 실행
   });
 
   // 라이트박스 닫기
@@ -154,6 +162,44 @@ document.addEventListener('DOMContentLoaded', () => {
         // src를 비워서 소리를 끄고 다시 채워둠 (다음 재생 준비)
         $iframe.attr('src', '');
         $iframe.attr('src', currentSrc);
+      });
+    }
+  });
+
+  // 쇼츠 라이트박스 열기
+  $('.btn-short-view .short-title img').click(function (e) {
+    e.preventDefault(); // 기본 링크 이동 방지
+
+    // 클릭한 쇼츠가 몇 번째인지 확인
+    var idx = $(this).closest('li').index();
+
+    // 해당 순서와 일치하는 라이트박스 선택
+    var $targetBox = $('.short-light-box').eq(idx);
+    var $iframe = $targetBox.find('iframe');
+
+    // 클릭 시 자동 재생되도록 src 뒤에 파라미터 추가 (선택 사항)
+    var videoSrc = $iframe.attr('src');
+    if (videoSrc.indexOf('autoplay') === -1) {
+      // 기존 주소에 자동 재생 옵션이 없다면 붙여줌
+      $iframe.attr('src', videoSrc + '?autoplay=1');
+    }
+
+    $targetBox.fadeIn(500);
+  });
+
+  // 쇼츠 라이트박스 닫기
+  $('.short-light-box').click(function (e) {
+    // 기존 조건에 닫기 버튼($(e.target).closest('.btn-close-lightbox').length > 0)을 눌렀을 때의 조건을 추가했습니다.
+    if ($(e.target).is('.short-light-box') || $(e.target).is('.iframe_wrap') || $(e.target).closest('.btn-close-lightbox').length > 0) {
+      var $this = $(this);
+      var $iframe = $this.find('iframe');
+      var currentSrc = $iframe.attr('src');
+
+      $this.fadeOut(500, function () {
+        // 재생 중지(소리 끄기)를 위해 src를 비우고, autoplay 파라미터를 제거하여 원상복구
+        var stopSrc = currentSrc.replace('?autoplay=1', '');
+        $iframe.attr('src', '');
+        $iframe.attr('src', stopSrc);
       });
     }
   });

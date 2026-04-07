@@ -240,32 +240,67 @@
                   <a class="btn-view" href="#" target="_blank" title="새 창으로 열기">View Video</a>
                 </div>
               </div>
-            </li>
+              </li>
+              <!-- <li class="card work-item">
+                <div class="card-thumbnail">
+                  <img src="image/회전목마0001.png" alt="포트폴리오 미리보기" />
+                </div>
+                <div class="card-detail">
+                  <h2>모션그래픽 영상</h2>
+                  <ul>
+                    <li>
+                      <strong>CONCEPT : </strong>
+                      3d, 2d모션그래픽 영상
+                    </li>
+                    <li>
+                      <strong>KEY WORD : </strong>
+                      Illustrator로 만든 모션그래픽.
+                    </li>
+                    <li>
+                      <strong>TOOL : </strong>
+                      Adobe After effect, Illustrator.
+                    </li>
+                  
+                  </ul>
+                  <div class="long-btns">
+                    <a href="pdf/plan_3.pdf" target="_blank" title="새 창으로 열기">View plan</a>
+                    <a class="btn-view" href="#" target="_blank" title="새 창으로 열기">View Video</a>
+                  </div>
+                </div>
+              </li> -->
           </ul>
+
           <!-- 비디오 라이트 박스(모달로 비디오 재생) -->
           
           <div class="work-light-box">
-          <div class="iframe_wrap">
-            <div class="iframe_box">
-              <video autoplay muted loop controls src="video/main.mp4"></video>
+            <div class="iframe_wrap">
+              <div class="iframe_box">
+                <video autoplay muted loop controls src="video/main.mp4"></video>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="work-light-box">
-          <div class="iframe_wrap">
-            <div class="iframe_box">
-              <video autoplay muted loop controls src="video/main.mp4"></video>
+          <div class="work-light-box">
+            <div class="iframe_wrap">
+              <div class="iframe_box">
+                <video autoplay muted loop controls src="video/main.mp4"></video>
+              </div>
             </div>
           </div>
-        </div>
-              <div class="work-light-box">
-          <div class="iframe_wrap">
-            <div class="iframe_box">
-              <video autoplay muted loop controls src="video/main.mp4"></video>
+          <div class="work-light-box">
+            <div class="iframe_wrap">
+              <div class="iframe_box">
+                <video autoplay muted loop controls src="video/main.mp4"></video>
+              </div>
             </div>
           </div>
-        </div>
-         
+          <!-- <div class="work-light-box">
+            <div class="iframe_wrap">
+              <div class="iframe_box">
+                <video autoplay muted loop controls src="video/main.mp4"></video>
+              </div>
+            </div>
+          </div> -->
+
           <div class="controls">
             <div class="indicator-container">
               <div class="dot" data-index="0"></div>
@@ -279,8 +314,8 @@
           <div class="img-slider">
             <ul class="img-slider-track">
               <li class="page"><img src="image/test4_0001.png" alt="콘티 첫번째 페이지" /></li>
-              <li class="page"><img src="image/립스틱.png" alt="콘티 두번째 페이지" /></li>
-              <li class="page"><img src="image/병,컵.png" alt="콘티 세번째 페이지" /></li>
+              <li class="page"><img src="image/립스틱.png" alt="립스틱" /></li>
+              <li class="page"><img src="image/병,컵.png" alt="병, 컵" /></li>
               <li class="page"><img src="image/test4_0001.png" alt="콘티 첫번째 페이지" /></li>
             </ul>
 
@@ -292,9 +327,6 @@
             </button>
 
             <div class="img-indicator">
-              <div class="dot active" data-index="0"></div>
-              <div class="dot" data-index="1"></div>
-              <div class="dot" data-index="2"></div>
             </div>
           </div>
           <div class="img-description">
@@ -316,9 +348,9 @@
           <ul class="short-list">
             <li>
               <a
-                href="https://www.youtube.com/shorts/8y7hBa-k6mk"
-                target="_blank"
-                title="새 창으로 열기"
+                href="#none"
+                class="btn-short-view"
+                title="영상 보기"
               >
                 <div class="short-title">
                   <span>모션그래픽 영상</span>
@@ -329,9 +361,9 @@
             </li>
             <li>
               <a
-                href="https://www.youtube.com/shorts/L3jnUKiow3M"
-                target="_blank"
-                title="새 창으로 열기"
+                href="#none"
+                class="btn-short-view"
+                title="영상 보기"
               >
                 <div class="short-title">
                   <span>라인 아트 영상</span>
@@ -342,9 +374,9 @@
             </li>
             <li>
               <a
-                href="https://www.youtube.com/shorts/zG_2Q1hHCXo"
-                target="_blank"
-                title="새 창으로 열기"
+                href="#none"
+                class="btn-short-view"
+                title="영상 보기"
               >
                 <div class="short-title">
                   <span>타이포 영상</span>
@@ -355,19 +387,44 @@
             </li>
           </ul>
         </div>
+
+        <div class="short-light-box" style="display: none;">
+          <button type="button" class="btn-close-lightbox" aria-label="닫기"></button>
+
+          <div class="iframe_wrap">
+            <div class="iframe_box">
+              <iframe src="https://www.youtube.com/embed/8y7hBa-k6mk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="short-light-box" style="display: none;">
+          <button type="button" class="btn-close-lightbox" aria-label="닫기"></button>
+
+          <div class="iframe_wrap">
+            <div class="iframe_box">
+              <iframe src="https://www.youtube.com/embed/L3jnUKiow3M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="short-light-box" style="display: none;">
+          <button type="button" class="btn-close-lightbox" aria-label="닫기"></button>
+          
+          <div class="iframe_wrap">
+            <div class="iframe_box">
+              <iframe src="https://www.youtube.com/embed/zG_2Q1hHCXo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
       </section>
       <section id="contact">
         <h3 class="section-title">CONTACT</h3>
         <ul class="contact-list">
           <li>
-            <a
-              href="#"
-              onclick="
-                copyEmail();
-                return false;
-              "
-              ><img src="image/mail.svg" alt="이메일 아이콘" />sejin040676@gmail.com</a
-            >
+            <a href="#" onclick="copyEmail(event)">
+              <img src="image/mail.svg" alt="이메일 아이콘" />sejin040676@gmail.com
+            </a>
           </li>
         </ul>
       </section>

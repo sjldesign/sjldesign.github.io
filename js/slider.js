@@ -1,7 +1,23 @@
 window.onload = function () {
   const cards = document.querySelectorAll('.card');
-  const dots = document.querySelectorAll('.controls .dot');
   const track = document.querySelector('.slider-track');
+  // 인디케이터가 실제 들어갈 .indicator-container 선택
+  const indicatorContainer = document.querySelector('.controls .indicator-container');
+
+  // --- 인디케이터 자동 생성 로직 ---
+  if (indicatorContainer) {
+    indicatorContainer.innerHTML = ''; // 기존 하드코딩된 dot 요소들 초기화
+
+    cards.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      dot.setAttribute('data-index', index);
+      indicatorContainer.appendChild(dot); // .indicator-container 안에 dot 추가
+    });
+  }
+
+  // 동적으로 생성된 dot들을 변수에 할당
+  const dots = document.querySelectorAll('.controls .dot');
 
   let currentIndex = 0;
   let autoSlideInterval;
@@ -22,6 +38,7 @@ window.onload = function () {
     });
 
     dots.forEach((dot, index) => {
+      // updateSlider가 실행될 때 현재 인덱스에 맞춰 알아서 active 클래스가 들어감
       dot.classList.toggle('active', index === currentIndex);
     });
   }
